@@ -1,17 +1,17 @@
 package semav.chapter3.linkedLists;
 
-public class Node<T> {
+class Node<T> {
     private T value;
     private Node<T> next;
     private Node<T> prev;
 
-    public Node(T value, Node<T> next, Node<T> prev) {
+    Node(T value, Node<T> next, Node<T> prev) {
         this.value = value;
         this.next = next;
         this.prev = prev;
     }
 
-    public T getValue() {
+    T getValue() {
         return value;
     }
 
@@ -21,5 +21,13 @@ public class Node<T> {
 
     void setPrev(Node<T> prev) {
         this.prev = prev;
+    }
+
+    Node<T> getNext() {
+        return next;
+    }
+
+    Node<T> getPrev() {
+        return prev;
     }
 }
