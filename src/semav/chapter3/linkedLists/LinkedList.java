@@ -1,22 +1,9 @@
 package semav.chapter3.linkedLists;
 
-import java.util.Iterator;
-import java.util.function.Consumer;
-
-public class LinkedList<T> implements Iterable<T>{
+public class LinkedList<T extends Comparable<? super T>>{
     private int size;
     private Node<T> first;
     private Node<T> last;
-
-    @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
-    public void forEach(Consumer<? super T> action) {
-
-    }
 
     public int getSize(){
         return size;
@@ -85,6 +72,84 @@ public class LinkedList<T> implements Iterable<T>{
 
     public T getLast() {
         return last.getValue();
+    }
+
+    public Object[] toArray(){
+        Object[] result = new Object[size];
+
+        Node<T> next = first;
+        int i = 0;
+        while(next != null){
+            result[i] = next.getValue();
+            next = next.getNext();
+            i++;
+        }
+
+        return result;
+    }
+
+    public void sort(){
+        if(size < 2)
+            return;
+
+        Node<T> first = this.first;
+        clear();
+
+        while(first != null){
+            Node<T> node = find(first);
+
+            if(node == first){
+                first = node.getNext();
+            }
+            else {
+                Node<T> prev = node.getPrev();
+                Node<T> next = node.getNext();
+
+                if(prev != null)
+                    prev.setNext(next);
+                if(next != null)
+                    next.setPrev(prev);
+            }
+
+            insertLast(node);
+        }
+    }
+
+    public void clear(){
+        first = null;
+        last = null;
+        size = 0;
+    }
+
+    private void insertLast(Node<T> node){
+        size++;
+
+        if (first == null){
+            first = node;
+            last = node;
+            node.setPrev(null);
+            node.setNext(null);
+        }
+        else {
+            last.setNext(node);
+            node.setPrev(first);
+            node.setNext(null);
+            last = node;
+        }
+    }
+
+    private Node<T> find(Node<T> node){
+        Node<T> result = node;
+
+        while (node != null){
+            node = node.getNext();
+
+            if (node != null && node.getValue().compareTo(result.getValue()) < 0){
+                result = node;
+            }
+        }
+
+        return result;
     }
 
     private Node<T> getNodeAt(int index){

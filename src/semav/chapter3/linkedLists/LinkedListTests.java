@@ -2,9 +2,49 @@ package semav.chapter3.linkedLists;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LinkedListTests {
+
+    @Test
+    public void shouldSortList(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
+        linkedList.insertLast(1);
+        linkedList.insertLast(3);
+        linkedList.insertLast(4);
+        linkedList.insertLast(2);
+        linkedList.insertLast(5);
+        linkedList.insertLast(4);
+
+        linkedList.sort();
+
+        assertArrayEquals(
+                new Object[] {
+                        new Integer(1),
+                        new Integer(2),
+                        new Integer(3),
+                        new Integer(4),
+                        new Integer(4),
+                        new Integer(5),
+                },
+                linkedList.toArray());
+    }
+
+    @Test
+    public void shouldReturnValidArray(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
+        linkedList.insertLast(1);
+        linkedList.insertLast(2);
+        linkedList.insertLast(3);
+
+        assertArrayEquals(
+                new Object[] {new Integer(1), new Integer(2), new Integer(3)},
+                linkedList.toArray());
+    }
+
     @Test
     public void shouldReturnZeroSizeIfEmpty(){
         LinkedList<Integer> linkedList = new LinkedList<>();

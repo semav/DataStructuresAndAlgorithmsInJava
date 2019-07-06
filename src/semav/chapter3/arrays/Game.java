@@ -1,5 +1,8 @@
 package semav.chapter3.arrays;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public final class Game {
     private final String name;
     private final int score;
@@ -7,6 +10,7 @@ public final class Game {
     public Game(String name, int score) {
         this.name = name;
         this.score = score;
+        LinkedList<String> s = new LinkedList<>();
     }
 
     public String getName() {
