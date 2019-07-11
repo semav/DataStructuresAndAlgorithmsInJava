@@ -13,45 +13,12 @@ public final class Matrix<T extends Number> {
         List<List<T>> newRows = new ArrayList<>();
 
         for(List<T> row : rows){
-            List<T> newRow = new ArrayList<>();
-            for(T value : row){
-                newRow.add(value);
-            }
+            List<T> newRow = new ArrayList<>(row);
             newRows.add(Collections.unmodifiableList(newRow));
         }
 
         this.rows = Collections.unmodifiableList(newRows);
     }
-
-    /*
-    public Matrix<T> add(Matrix matrix){
-        T[][] newValues = new T[getRowsCount()][getColumnsCount()];
-
-        for (int row = 0; row < values.length; row++){
-            for (int column = 0; column < values[row].length; column++){
-                newValues[row][column] = values[row][column] + matrix.getAt(row, column);
-            }
-        }
-
-        return new Matrix(newValues);
-    }
-
-    public Matrix<T> multiply(Matrix<T> matrix, BinaryOperator<T> multiplication){
-        if (getRowsCount() != matrix.getColumnsCount() || getColumnsCount() != matrix.getRowsCount()){
-            throw new IllegalArgumentException();
-        }
-
-        T[][] newValues = new int[getRowsCount()][matrix.getColumnsCount()];
-
-        for(int row = 0; row < getRowsCount(); row++){
-            for (int col = 0; col < matrix.getColumnsCount(); col++){
-                newValues[row][col] = multiply(row, col, matrix, multiplication);
-            }
-        }
-
-        return new Matrix(newValues);
-    }
-     */
 
     public T getAt(int row, int column){
         return rows.get(row).get(column);

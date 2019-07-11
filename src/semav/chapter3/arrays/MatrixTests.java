@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,9 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MatrixTests {
     @Test
     public void shouldThrowExceptionIfValuesIsNull(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Matrix(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Matrix<Integer>(null));
     }
 
     @Test
@@ -23,9 +20,7 @@ public class MatrixTests {
         rows.add(Arrays.asList(1,2));
         rows.add(Arrays.asList(1,2,3));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Matrix(rows);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Matrix<>(rows));
     }
 
     @Test
@@ -52,9 +47,9 @@ public class MatrixTests {
         Matrix<Integer> matrix1 = new Matrix<>(rows1);
         Matrix<Integer> matrix2 = new Matrix<>(rows2);
 
-        MatrixAddOperator addOperator = new MatrixAddOperator<Integer>((a, b) -> a.intValue() + b.intValue());
+        MatrixAddOperator<Integer> addOperator = new MatrixAddOperator<>(Integer::sum);
 
-        Matrix matrix = addOperator.apply(matrix1, matrix2);
+        Matrix<Integer> matrix = addOperator.apply(matrix1, matrix2);
 
         assertEquals(2, matrix.getAt(0,0));
         assertEquals(3, matrix.getAt(0,1));
@@ -62,15 +57,27 @@ public class MatrixTests {
         assertEquals(3, matrix.getAt(1,1));
     }
 
-/*
     @Test
     public void shouldMultiplyMatrices(){
-        Matrix matrix1 = new Matrix(new Integer[][] {{1,2,4}, {2,0,3}});
-        Matrix matrix2 = new Matrix(new Integer[][] {{2,5}, {1,3}, {1,1}});
+        List<List<Integer>> rows1 = new ArrayList<>();
+        rows1.add(Arrays.asList(1,2,4));
+        rows1.add(Arrays.asList(2,0,3));
 
-        Matrix matrix = matrix1.multiply(matrix2);
+        List<List<Integer>> rows2 = new ArrayList<>();
+        rows2.add(Arrays.asList(2,5));
+        rows2.add(Arrays.asList(1,3));
+        rows2.add(Arrays.asList(1,1));
 
-        assertArrayEquals(new int[][] {{8,15}, {7,13}}, matrix.getValues());
+        Matrix<Integer> matrix1 = new Matrix<>(rows1);
+        Matrix<Integer> matrix2 = new Matrix<>(rows2);
+
+        MatrixMultiplyOperator<Integer> multiplyOperator = new MatrixMultiplyOperator<>(Integer::sum, (a, b) -> a * b);
+
+        Matrix matrix = multiplyOperator.apply(matrix1, matrix2);
+
+        assertEquals(8, matrix.getAt(0,0));
+        assertEquals(15, matrix.getAt(0,1));
+        assertEquals(7, matrix.getAt(1,0));
+        assertEquals(13, matrix.getAt(1,1));
     }
-     */
 }
