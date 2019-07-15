@@ -8,10 +8,24 @@ public final class PrefixAverage {
     }
 
     public int[] prefixAveragesQuadratic(){
-        return null;
+        int[] result = new int[numbers.length];
+        for(int i = 0; i < numbers.length; i++){
+            int sum = 0;
+            for(int j = 0; j <= i; j++){
+                sum += numbers[j];
+            }
+            result[i] = sum / (i + 1);
+        }
+        return result;
     }
 
     public int[] prefixAveragesLinear(){
-        return null;
+        int[] result = new int[numbers.length];
+        int sum = 0;
+        for(int i = 0; i < numbers.length; i++){
+            sum += numbers[i];
+            result[i] = sum / (i + 1);
+        }
+        return result;
     }
 }
