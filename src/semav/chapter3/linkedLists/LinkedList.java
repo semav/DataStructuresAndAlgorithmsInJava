@@ -1,6 +1,8 @@
 package semav.chapter3.linkedLists;
 
-public class LinkedList<T extends Comparable<? super T>>{
+import java.util.Iterator;
+
+public class LinkedList<T extends Comparable> implements Iterable<T>{
     private int size;
     private Node<T> first;
     private Node<T> last;
@@ -166,5 +168,10 @@ public class LinkedList<T extends Comparable<? super T>>{
         }
 
         return result;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<T>(first);
     }
 }

@@ -49,6 +49,17 @@ public class ArrayStackTests {
     }
 
     @Test
+    public void popShouldReturnAndRemoveTopElementWhenNotEmpty(){
+        ArrayStack<Integer> stack = new ArrayStack<>();
+        stack.push(1);
+        stack.push(2);
+
+        assertEquals(2, stack.pop());
+        assertEquals(1, stack.size());
+        assertEquals(1, stack.top());
+    }
+
+    @Test
     public void topShouldThrowExceptionWhenStackIsEmpty(){
         ArrayStack<Integer> stack = new ArrayStack<>(2);
 
