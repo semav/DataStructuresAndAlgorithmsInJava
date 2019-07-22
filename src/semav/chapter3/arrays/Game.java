@@ -2,6 +2,7 @@ package semav.chapter3.arrays;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 
 public final class Game {
     private final String name;

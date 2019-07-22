@@ -1,9 +1,7 @@
-package semav.chaper5.iterators;
+package semav.chapter5.iterators;
 
 import org.junit.jupiter.api.Test;
 import semav.chapter3.linkedLists.LinkedList;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

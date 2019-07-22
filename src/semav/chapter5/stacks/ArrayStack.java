@@ -1,6 +1,4 @@
-package semav.chaper5.stacks;
-
-import java.util.EmptyStackException;
+package semav.chapter5.stacks;
 
 public class ArrayStack<T> implements Stack<T> {
     private static final int CAPACITY = 100;

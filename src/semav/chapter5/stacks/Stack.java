@@ -1,4 +1,4 @@
-package semav.chaper5.stacks;
+package semav.chapter5.stacks;
 
 import java.util.EmptyStackException;
 
